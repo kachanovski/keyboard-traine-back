@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "jwtSecret": "secret-token",
+  "mongoUri": "mongodb+srv://kachanovski:shurik1303@keyboard-traine.fzywt.mongodb.net/train?retryWrites=true&w=majority"
+}
