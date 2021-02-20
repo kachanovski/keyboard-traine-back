@@ -12,9 +12,8 @@ const updateUser = async (req: Request, res: Response) => {
         if (!decodeToken.isAdmin) {
             return res.status(500).json({message: 'It is options access only admins'})
         }
-        console.log(req.body)
+
         const user_id = req.body.id
-        console.log(user_id)
 
         const findUser = await User.findById(user_id)
         if (!findUser) {

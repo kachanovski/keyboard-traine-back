@@ -13,6 +13,18 @@ KEYBOARD API
 
 GET/auth
 
+password must be more 5 symbols
+
+PUT/reset-password 
+        req{
+            email: string
+            password: string
+            }
+        res{
+            'password updated'
+            }
+
+
 POST/login req{ email: string password: string rememberMe?: boolean }
 
     res{
@@ -127,7 +139,7 @@ GET/quiz
                     "_id": "6023e778a0248f2c3cf4ba1c",
                     "question": "question1",
                     "rightAnswer": "right",
-                    "wrongAnswers": "wrong",
+                    "wrongAnswers": ["wrong"],
                     "category": "category",
                     "created": "2021-02-10T14:02:32.913Z",
                     "updated": "2021-02-10T14:02:32.913Z",
@@ -136,11 +148,27 @@ GET/quiz
             ]
         }
 
+DELETE/quiz
+only admin account
+        req: {id: quiz_id}
+
+PUT/card
+only admin account
+        req: { "id": "60317412eea3702b9ca55abf",
+            "question": "what is done ",
+            "imgQuestion": "",
+            "answer": {
+                    "right": "first update",
+                    "wrong": ["second", "trirt", "fout"]
+                     },
+            "answer_description": "becouse update",
+            "category": "array"
+
 
 
 /RESULTS\
 query параметры явлюяются обязательными
-получаем все резальтаты из определенной категории сортированными по лучшему времени
+получаем топ 20 из определенной категории сортированными по лучшему времени
 GET/results?category=Category_name
 
 эти запросы могут делать только авторизованные пльзователи

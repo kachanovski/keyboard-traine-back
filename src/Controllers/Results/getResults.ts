@@ -10,14 +10,14 @@ const getResults = async (req: Request, res: Response) => {
             const allResults = await Result.find().exec()
             const filterResult = await allResults.filter(result => result.category === categoryF)
             const sortRes = await filterResult.sort(function (a, b) {
-                if (a.result.mistakes > b.result.mistakes) {
+                if (a.result.time > b.result.time) {
                     return 1
                 }
-                if (a.result.mistakes < b.result.mistakes) {
+                if (a.result.time < b.result.time) {
                     return -1
                 }
                 return 0
-            })
+            }).slice(0,20)
 
             res.status(201).json({
                 message: 'Result add',

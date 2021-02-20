@@ -5,15 +5,19 @@ const addCard = require('./Controllers/Cards/addCard')
 const getCards = require('./Controllers/Cards/getCards')
 const deleteCard = require('./Controllers/Cards/deleteCard')
 const updateCard = require('./Controllers/Cards/updateCard')
-//
-//const login = require('./Controllers/Auth/login')
+
+const login = require('./Controllers/Auth/login')
 const register = require('./Controllers/Auth/register')
 const logOut = require('./Controllers/Auth/logOut')
 const {getMe} = require('./Controllers/Auth/getMe')
+const resetPassword = require('./Controllers/Auth/resetPassword')
 
-const multer = require("multer");
 const addQuizQuestion = require('./Controllers/Quiz/addQuestion')
 const getQuizQuestion = require('./Controllers/Quiz/getQuestions')
+const deleteQuizQuestion = require('./Controllers/Quiz/deleteQuestion')
+const updateQuestion = require('./Controllers/Quiz/updateQuestion')
+
+const multer = require("multer");
 const storage = require('./Middleware/upload')
 const {fileFilter} = require("./Middleware/upload")
 
@@ -39,14 +43,17 @@ router.delete('/card', deleteCard)
 router.put('/card', updateCard)
 
 //auth
-router.post('/login',  require('./Controllers/Auth/login'))
+router.post('/login',  login)
 router.get('/auth', getMe)
 router.post('/register', register)
 router.delete('/logout', logOut)
+router.put('/reset-password', resetPassword)
 
 // quiz
 router.post('/quiz', upload.single('quizImgQuestion'), addQuizQuestion)
 router.get('/quiz', getQuizQuestion)
+router.delete('/quiz', deleteQuizQuestion)
+router.put('/quiz', updateQuestion)
 
 //results
 router.post('/result', addResult)
