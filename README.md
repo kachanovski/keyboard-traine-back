@@ -88,9 +88,9 @@ POST/card
         "message": "Card added",
         "statusCode": 201    
     }
-DELETE/card
+DELETE/card?id= 'card_id'
 only admin account
-        req: {id: card_id}
+
 
 PUT/card
 only admin account
@@ -148,9 +148,8 @@ GET/quiz
             ]
         }
 
-DELETE/quiz
+DELETE/quiz?id='id'
 only admin account
-        req: {id: quiz_id}
 
 PUT/card
 only admin account

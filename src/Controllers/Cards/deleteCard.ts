@@ -6,20 +6,19 @@ const config = require('config')
 
 const deleteCard = async (req: Request, res: Response) => {
     try {
-        const card_id = req.body.id
-
+        const {id} = req.query;
         const token = req.headers.cookie?.substring(6)
         const decodeToken = jwt.verify(token, config.get('jwtSecret'));
         if (!decodeToken.isAdmin) {
             return res.status(500).json({message: 'It is options access only admins'})
         }
         try{
-            await Card.findById(card_id).exec()
+            await Card.findById(id).exec()
         } catch (e)  {
             return res.status(500).json({message: 'Dont found card_id'})
         }
 
-        await Card.findByIdAndDelete(card_id).exec()
+        await Card.findByIdAndDelete(id).exec()
         res.status(200).json({message: 'card deleted'})
 
     } catch (e) {
